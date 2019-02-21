@@ -5,8 +5,11 @@ import Live from './Components/Live'
 import Surfer from './Components/Surfer'
 
 <!-- Examples -->
+import ContextOverviewRaw from '!raw-loader!./examples/ContextOverview'
 import EndExampleRaw from '!raw-loader!./examples/EndExample'
+import InitialPropsRaw from '!raw-loader!./examples/InitialProps'
 import MultiRootRaw from '!raw-loader!./examples/MultiRoot'
+import PlaygroundRaw from '!raw-loader!./examples/Playground'
 import SingleRootRaw from '!raw-loader!./examples/SingleRoot'
 import WithContext from '!raw-loader!./examples/WithContext'
 import WithProps from '!raw-loader!./examples/WithProps'
@@ -45,7 +48,7 @@ import { Container, Button, Flex, Grid, Hero, Strong as S } from './Components/S
 ---
 
 <Surfer
-  code={`const { Provider, Consumer } = React.createContext()`}
+  code={ContextOverviewRaw}
   steps={[
     {},
     { tokens: { 1: [3] }, notes: 'For providing data' },
@@ -55,44 +58,41 @@ import { Container, Button, Flex, Grid, Hero, Strong as S } from './Components/S
 />
 
 ---
+
 ### Part 2
 ## Building a Modal component
 <Appear>
-  <p><S>Method 1</S>: Props and State</p>
-  <p><S>Method 2</S>: Context and State</p>
+  <p><S>Example 1</S>: Props and State</p>
+  <p><S>Example 2</S>: Context and State</p>
 </Appear>
 
 ---
 
+<div style={{
+  width: '100vw'
+}}>
+  <App>
+    <h1>Instadogs</h1>
+    <Dogs />
+  </App>
+</div>
+
+---
+
 <Surfer
-  code={`
-    export const dogs = [
-      {
-        src: "https://cdn.shibe.online/shibes/1.jpg",
-        emoji: "🍏",
-        name: "Johnny"
-      },
-      {
-        src: "https://cdn.shibe.online/shibes/2.jpg",
-        emoji: "🍉",
-        name: "Kaprice"
-      },
-      ...otherDogs
-      
-    ]
-  `}
+  code={InitialPropsRaw}
   steps={[
-    { lines: [2], notes: 'Each example method uses this array of dogs' },
+    {},
     { lines: [4, 5, 6], notes: 'Each dog contains:' },
     { lines: [4], notes: 'A 📸 photo of the dog' },
     { lines: [5, 6], notes: 'And some extra information about the dog.' }
   ]}
-  title="[ 🐕, 🐩, 🐶]"
+  title="Initial props"
 />
 
 ---
 
-<h6><S>Method 1</S></h6>
+<h6><S>Example 1</S></h6>
 <h2>Props and State</h2>
 
 ---
@@ -113,10 +113,10 @@ import { Container, Button, Flex, Grid, Hero, Strong as S } from './Components/S
   code={WithProps}
   steps={[
     {},
-    { range: [6,8], notes: "Initial 🐕 state is null" },
-    { lines: [14], notes: "When clicking on a 🐕, we set the state" },
-    { lines: [15, 16, 18, 19], notes: "We render a Modal when the 🐕 state is set" },
-    { lines: [17], notes: "We pass the 🐕 state to the Modal content" }
+    { range: [6,8], notes: "Initial dog state is null." },
+    { lines: [14], notes: "When clicking on a Dog, we set the state." },
+    { lines: [15, 16, 18, 19], notes: "We render a Modal when the dog state is set." },
+    { lines: [17], notes: "And pass some data to the content of the modal." }
   ]}
 />
 
@@ -125,15 +125,16 @@ import { Container, Button, Flex, Grid, Hero, Strong as S } from './Components/S
 <Surfer
   code={WithProps}
   steps={[
-    { lines: [15, 16, 18, 19], notes: "✅ Very clear when a Modal is rendered" },
-    { lines: [15, 16, 18, 19], notes: "🤔 Could we avoid rewriting this logic in other places where we use Modal?" },
-    { lines: [14], notes: "🤔 How many levels do we need to prop-drill this onClick event?" },
-    { range: [6, 8], notes: "🤔 Could we avoid adding state to this component?" },
+    { lines: [15, 16, 18, 19], notes: "✅ Very clear when a Modal is rendered." },
+    { lines: [15, 16, 18, 19], notes: "🤔 Could we avoid rewriting this logic for each Modal?" },
+    { lines: [14], notes: "🤔 Do we need to prop-drill this event through multiple components?" },
+    { range: [6, 8], notes: "🤔 Does this component really need to be stateful?" },
   ]}
 />
 
 ---
-<h6><S>Method 2</S></h6>
+
+<h6><S>Example 2</S></h6>
 <h2>Context and State</h2>
 
 ---
@@ -169,6 +170,7 @@ import { Container, Button, Flex, Grid, Hero, Strong as S } from './Components/S
     { notes: 'This is the App component'},
     { lines: [25], notes: 'In both examples, we passed children to this component'},
     { lines: [25], notes: 'In example 1, the child component managed its own modal state'},
+    { lines: [25], notes: 'In example 2, the child component managed its own modal state'},
     { range: [5,8], notes: 'In example 2, we make use of a Context object ⚛️'},
     { lines: [6], notes: 'This context contains a Consumer'},
     { lines: [7], notes: 'And a Provider'},
@@ -210,13 +212,13 @@ import { Container, Button, Flex, Grid, Hero, Strong as S } from './Components/S
 
 <img src="https://media.giphy.com/media/l3mZ4WW4JN2XraEXm/giphy.gif" width="100%"/>
 <Appear>
-  <p>Let's revisit our questions from <S>Method 1</S>: Props and State</p>
+  <p>Let's revisit our questions from <S>Example 1</S>: Props and State</p>
 </Appear>
 
 ---
 
 <Surfer
-  title="Method 1: Props and State"
+  title="Example 1: Props and State"
   code={WithProps}
   steps={[
     {},
@@ -237,7 +239,7 @@ import { Container, Button, Flex, Grid, Hero, Strong as S } from './Components/S
 ---
 
 <Surfer
-  title="Method 1: Props and State"
+  title="Example 1: Props and State"
   code={WithProps}
   steps={[
     { lines: [14], notes: "🤔 How many levels do we need to prop-drill this onClick event?" }
@@ -257,7 +259,7 @@ import { Container, Button, Flex, Grid, Hero, Strong as S } from './Components/S
 ---
 
 <Surfer
-  title="Method 1: Props and State"
+  title="Example 1: Props and State"
   code={WithProps}
   steps={[
     { range: [6, 8], notes: "🤔 Could we avoid adding state to this component?" }
@@ -267,7 +269,7 @@ import { Container, Button, Flex, Grid, Hero, Strong as S } from './Components/S
 ---
 
 <Surfer
-  title="Method 2: Context and State"
+  title="Example 2: Context and State"
   code={WithContext}
   steps={[
     { range: [2, 6], notes: '✅ Yes! We can use a functional component'},
@@ -276,6 +278,7 @@ import { Container, Button, Flex, Grid, Hero, Strong as S } from './Components/S
 />
 
 ---
+
 <Live
   code={EndExampleRaw}
   scope={{
@@ -353,13 +356,7 @@ import { Container, Button, Flex, Grid, Hero, Strong as S } from './Components/S
 ---
 
 <Live
-  code={`
-  // Playground
-  
-  <App>
-    <Dogs />
-  </App>
-  `}
+  code={PlaygroundRaw}
   scope={{
     App,
     Button,

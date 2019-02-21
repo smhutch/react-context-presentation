@@ -14,7 +14,7 @@
           <Dogs onClick={dog => this.setState({ dog })} />
           {this.state.dog && (
             <Modal onClose={() => this.setState({ dog: null })}>
-              <DogInfo {...this.state.dog}/>
+              <DogInfo {...this.state.dog} />
             </Modal>
           )}
         </App>
