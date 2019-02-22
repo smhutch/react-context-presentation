@@ -20,7 +20,7 @@ class App extends React.Component {
       <AppWrapper>
         <Container>
           <ModalProvider value={{
-            openModal: content => this.setState({ modal: content })
+            openModal: modal => this.setState({ modal })
           }}>
             {this.props.children}
             {this.state.modal && (

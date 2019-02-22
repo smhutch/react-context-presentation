@@ -1,5 +1,0 @@
-// Playground
-  
-<App>
-  <Dogs />
-</App>
